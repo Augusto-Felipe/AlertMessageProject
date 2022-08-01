@@ -23,37 +23,26 @@ class ViewController: UIViewController {
     
     @IBAction func signUpClicked(_ sender: Any) {
         
-        let userNameAlert = UIAlertController(title: "Error", message: "Username not found.", preferredStyle: UIAlertController.Style.alert)
-        
-        let passWordAlert = UIAlertController(title: "Error", message: "Password not found.", preferredStyle: UIAlertController.Style.alert)
-        
-        let samePassWordAlert = UIAlertController(title: "Error", message: "Password is not the same.", preferredStyle: UIAlertController.Style.alert)
-        
-        let sucessAlert = UIAlertController(title: "Sucess", message: "Sucefull Login!", preferredStyle: UIAlertController.Style.alert)
-        
-        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            // OK Button clicked
-            print("Button Clicked.")
-        }
-        
-        userNameAlert.addAction(okButton)
-        passWordAlert.addAction(okButton)
-        samePassWordAlert.addAction(okButton)
-        sucessAlert.addAction(okButton)
-        
         if myUserName == userNameText.text {
-            self.present(userNameAlert, animated: true, completion: nil)
+            makeAlert(title: "Error", message: "Username not Found.")
         } else {
             if myPassWord == passwordText.text {
-                self.present(passWordAlert, animated: true, completion: nil)
+                makeAlert(title: "Error", message: "Password not Found.")
             } else {
                 if passwordText.text != checkPasswordText.text {
-                    self.present(samePassWordAlert, animated: true, completion: nil)
+                    makeAlert(title: "Error", message: "Password do not match.")
                 } else {
-                    self.present(sucessAlert, animated: true, completion: nil)
+                    makeAlert(title: "Sucess", message: "Login OK")
                 }
             }
         }
+    }
+    
+    func makeAlert (title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
